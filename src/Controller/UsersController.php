@@ -100,7 +100,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/users/{id}/projects", methods={"GET"}, name="users_delete_id")
+     * @Route("/users/{id}/projects", methods={"GET"}, name="users_projects")
      */
     public function usersProjects(User $user): Response
     {
