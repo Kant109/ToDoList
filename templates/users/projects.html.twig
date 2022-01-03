@@ -43,6 +43,7 @@
       <thead>
           <tr>
               <th>Name</th>
+              <th>Description</th>
               <th>Project</th>
           </tr>
       </thead>
@@ -50,6 +51,7 @@
           {% for project in projects %}
           <tr>
               <td>{{ project.getName }}</td>
+              <td>{{ project.getDescription }}</td>
               <td><a class="button button-primary" href="/projects/edit/{{ project.getId }}">Project</a></td>
           </tr>
           {% endfor %}
