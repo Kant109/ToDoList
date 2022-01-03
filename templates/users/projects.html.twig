@@ -34,13 +34,28 @@
   <div class="container">
     <div class="row">
       <div class="one-half column" style="margin-top: 25%">
-        <h4>User tasks</h4>
+        <h4>{{ user.getFirstName }} projects</h4>
         <p></p>
       </div>
     </div>
     <!-- The above form looks like this -->
+    <table class="u-full-width">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Project</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for project in projects %}
+          <tr>
+              <td>{{ project.getName }}</td>
+              <td><a class="button button-primary" href="/projects/edit/{{ project.getId }}">Project</a></td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
       <a class="button button-primary" href="/users">Cancel</a>
-      <input class="button-primary" type="submit" value="Save">
   </div>
 
 <!-- End Document

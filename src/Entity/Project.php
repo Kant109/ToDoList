@@ -137,6 +137,15 @@ class Project
         return $this;
     }
 
+    public function clearUsers(): self
+    {
+        foreach($this->users as $user) {
+            $this->removeUser($user);
+        }
+        
+        return $this;
+    }
+
     /**
      * @return Collection|Task[]
      */

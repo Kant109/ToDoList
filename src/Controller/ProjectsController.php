@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\User;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
-use Doctrine\Persistence\ManagerRegistry;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,8 +64,11 @@ class ProjectsController extends AbstractController
      */
     public function projectsEdit(Project $project): Response
     {
+        $users = $project->getUsers();
+
         return $this->render('projects/edit.html.twig', [
             'project' => $project,
+            'users' => $users,
         ]);
     }
 
@@ -108,17 +114,36 @@ class ProjectsController extends AbstractController
     {
         $users = $userRepository->findAll();
 
+        $projectUsers = $project->getUsers();
+
         return $this->render('projects/addUser.html.twig', [
             'project' => $project,
             'users' => $users,
+            'projectUsers' => $projectUsers,
         ]);
     }
 
     /**
      * @Route("/projects/{id}/user/save", methods={"POST"}, name="projects_addUser_save")
      */
-    public function projectsAddUserSave(UserRepository $userRepository, Project $project): Response
+    public function projectsAddUserSave(LoggerInterface $logger, ManagerRegistry $doctrine, UserRepository $userRepository, Request $request, Project $project): Response
     {
+        $entityManager = $doctrine->getManager();
+
+        $project->clearUsers();
+
+        $listIdUser = $request->request->get('user_id', []);
+
+        $logger->debug("valeur userId", ["userId"=>$listIdUser]);
+        
+        foreach($listIdUser as $userId) {
+            $user = $userRepository->find($userId);
+            $project->addUser($user);
+        }
+
+        $entityManager->persist($project);
+        $entityManager->flush();
+
         return $this->redirectToRoute('projects');
     }
 }

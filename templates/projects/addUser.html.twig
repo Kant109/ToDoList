@@ -55,7 +55,7 @@
                         {% for user in users %}
                         <tr>
                             <td>
-                                <input type="checkbox" id="{{ user.getId }}" name="{{ user.getId }}">
+                                <input type="checkbox" {%if projectUsers.contains(user) %} checked {% endif %} value={{ user.getId }} id="{{ user.getId }}" name="user_id[]">
                             </td>
                             <td>{{ user.getFirstName }}</td>
                             <td>{{ user.getLastName }}</td>

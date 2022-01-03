@@ -104,9 +104,10 @@ class UsersController extends AbstractController
      */
     public function usersProjects(User $user): Response
     {
-        $this->addFlash('success', 'Your user has been deleted !');
+        $projects = $user->getProjects();
 
         return $this->render('users/projects.html.twig', [
+            'projects' => $projects,
             'user' => $user,
         ]);
     }
