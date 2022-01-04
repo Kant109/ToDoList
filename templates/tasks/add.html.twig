@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- The above form looks like this -->
-    <form action="/tasks/{{ project.getId }}/add/save" method="POST">
+    <form action="/project/{{ project.getId }}/tasks/add/save" method="POST">
       <div class="row">
         <div class="column">
           <label for="name">Name</label>
@@ -74,7 +74,7 @@
           </select>
         </div>
       </div>
-      <a class="button button-primary" href="/tasks/{{ project.getId }}">Cancel</a>
+      <a class="button button-primary" href="/project/{{ project.getId }}/tasks">Cancel</a>
       <input class="button-primary" type="submit" value="Save">
     </form>
   </div>

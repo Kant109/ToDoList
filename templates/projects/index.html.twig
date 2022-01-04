@@ -60,7 +60,7 @@
                             <td>{{ project.getStartDate|date("d M Y") }}</td>
                             <td>{{ project.getEndDate|date("d M Y") }}</td>
                             <td><a class="button button-primary" href="/projects/{{ project.getId }}/user">User</a></td>
-                            <td><a class="button button-primary" href="/tasks/{{ project.getId }}">Tasks</a></td>
+                            <td><a class="button button-primary" href="/project/{{ project.getId }}/tasks">Tasks</a></td>
                             <td><a class="button button-primary" href="/projects/edit/{{ project.getId }}">Edit</a></td>
                         </tr>
                         {% endfor %}

@@ -69,8 +69,10 @@ class ProjectsController extends AbstractController
     public function projectsEdit(Project $project): Response
     {
         $users = $project->getUsers();
+        $tasks = $project->getTasks();
 
         return $this->render('projects/edit.html.twig', [
+            'tasks' => $tasks,
             'project' => $project,
             'users' => $users,
         ]);

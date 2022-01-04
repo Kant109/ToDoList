@@ -37,7 +37,7 @@
             <h4>{{ project.getName }} tasks</h4>
         </div>
     </div>
-    <a class="button button-primary" href="/tasks/{{ project.getId }}/add">Add tasks</a>
+    <a class="button button-primary" href="/project/{{ project.getId }}/tasks/add">Add tasks</a>
   {% if tasks %}
     <div class="row">
         <div class="column">
@@ -58,7 +58,7 @@
                         <td>{{ task.getDescription }}</td>
                         <td>{{ task.getStartDate|date("d M Y") }}</td>
                         <td>{{ task.getEndDate|date("d M Y") }}</td>
-                        <td><a class="button button-primary" href="/tasks/{{ project.getId }}/edit/{{ task.getId }}">Edit</a></td>
+                        <td><a class="button button-primary" href="/project/{{project.getId}}/tasks/{{task.getId}}/edit">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

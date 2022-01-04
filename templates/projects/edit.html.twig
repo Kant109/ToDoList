@@ -65,13 +65,31 @@
         </div>
       </div>
       <div class="row">
-        <div class="column">
+        <div class="ten columns">
+          <label for="tasks">Tasks</label>
+          <select class="u-full-width" id="tasks" name="tasks">
+            {% for task in tasks %}
+                  <option value="{{ task.getId }}" selected>{{ task.getName }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="two columns">
+          <label for="tasks">&nbsp;</label>
+          <a class="button button-primary" href="/project/{{ project.getId }}/tasks/add">Add task</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ten columns">
           <label for="users">Users</label>
           <select class="u-full-width" id="users" name="users">
             {% for user in users %}
                   <option value="{{ user.getId }}" selected>{{ user.getFirstName }} {{ user.getLastName }}</option>
             {% endfor %}
           </select>
+        </div>
+        <div class="two columns">
+          <label for="users">&nbsp;</label>
+          <a class="button button-primary" href="/users/add">Add user</a>
         </div>
       </div>
       <a class="button button-primary" href="/projects">Cancel</a>

@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TasksController extends AbstractController
 {
     /**
-     * @Route("/tasks/{id}", name="tasks")
+     * @Route("project/{id}/tasks", name="tasks")
      */
     public function tasks(Project $project): Response
     {
@@ -33,7 +33,7 @@ class TasksController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{id}/add", methods={"GET"}, name="tasks_add")
+     * @Route("/project/{id}/tasks/add", methods={"GET"}, name="tasks_add")
      */
     public function tasksAdd(Project $project): Response
     {
@@ -46,7 +46,7 @@ class TasksController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{id}/add/save", methods={"POST"}, name="tasks_add_save")
+     * @Route("/project/{id}/tasks/add/save", methods={"POST"}, name="tasks_add_save")
      */
     public function tasksAddSave(ManagerRegistry $doctrine, Request $request, Project $project): Response
     {
@@ -67,7 +67,7 @@ class TasksController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{project_id}/edit/{task_id}", name="tasks_edit")
+     * @Route("/project/{project_id}/tasks/{task_id}/edit", name="tasks_edit")
      * @ParamConverter("project", options={"mapping": {"project_id": "id"}})
      * @ParamConverter("task", options={"mapping": {"task_id": "id"}})
      */
@@ -80,7 +80,7 @@ class TasksController extends AbstractController
     }
 
     /**
-     * @Route("/tasks/{project_id}/edit/{task_id}/save", methods={"POST"}, name="task_edit_save")
+     * @Route("/project/{project_id}/tasks/{task_id}/edit/save", methods={"POST"}, name="task_edit_save")
      * @ParamConverter("project", options={"mapping": {"project_id": "id"}})
      * @ParamConverter("task", options={"mapping": {"task_id": "id"}})
      */
@@ -101,7 +101,7 @@ class TasksController extends AbstractController
 
     
     /**
-     * @Route("/tasks/{project_id}/delete/{task_id}", methods={"GET"}, name="task_delete")
+     * @Route("/project/{project_id}/tasks/{task_id}/delete", methods={"GET"}, name="task_delete")
      * @ParamConverter("project", options={"mapping": {"project_id": "id"}})
      * @ParamConverter("task", options={"mapping": {"task_id": "id"}})
      */
