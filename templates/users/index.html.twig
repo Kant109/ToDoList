@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "layouts/base.html.twig" %}
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/skeleton.css">
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="/images/favicon.png">
-
-</head>
-<body>
+{% block body %}
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="container">
@@ -37,15 +10,6 @@
         </div>
     </div>
     <a class="button button-primary" href="/users/add">Add user</a>
-    {% for label, messages in app.flashes %}
-      {% for message in messages %}
-        <div class="row">
-          <div class="column">
-            <p>{{ message }}</p>
-          </div>
-        </div>
-      {% endfor %}
-    {% endfor %}
     {% if users %}
         <div class="row">
             <div class="column">
@@ -78,5 +42,4 @@
 </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+{% endblock %}

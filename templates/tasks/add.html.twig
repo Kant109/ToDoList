@@ -28,49 +28,57 @@
 
 </head>
 <body>
+
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="one-half column" style="margin-top: 25%">
-            <h4>Projects</h4>
-        </div>
+      <div class="one-half column" style="margin-top: 25%">
+        <h4>Add task to {{ project.getName }}</h4>
+        <p></p>
+      </div>
     </div>
-    <a class="button button-primary" href="/projects/add">Add project</a>
-    {% if projects %}
-        <div class="row">
-            <div class="column">
-                <table class="u-full-width">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Start time</th>
-                            <th>End time</th>
-                            <th>Add user</th>
-                            <th>Tasks</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for project in projects %}
-                        <tr>
-                            <td>{{ project.getName }}</td>
-                            <td>{{ project.getDescription }}</td>
-                            <td>{{ project.getStartDate|date("d M Y") }}</td>
-                            <td>{{ project.getEndDate|date("d M Y") }}</td>
-                            <td><a class="button button-primary" href="/projects/{{ project.getId }}/user">User</a></td>
-                            <td><a class="button button-primary" href="/tasks/{{ project.getId }}">Tasks</a></td>
-                            <td><a class="button button-primary" href="/projects/edit/{{ project.getId }}">Edit</a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    <!-- The above form looks like this -->
+    <form action="/tasks/{{ project.getId }}/add/save" method="POST">
+      <div class="row">
+        <div class="column">
+          <label for="name">Name</label>
+          <input class="u-full-width" type="text" id="name" name="name">
         </div>
-    {% endif %}
-    <a class="button button-primary" href="/users">Users</a>
-</div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <label for="description">Description</label>
+          <textarea class="u-full-width" type="text" id="description" name="description"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <label for="start_date">Start date</label>
+          <input class="u-full-width" type="text" id="start_date" name="start_date" placeholder="aaaa/mm/jj">
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <label for="end_date">End date</label>
+          <input class="u-full-width" type="text" id="end_date" name="end_date" placeholder="aaaa/mm/jj">
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <label for="users">User</label>
+          <select class="u-full-width" id="users" name="users">
+            {% for user in users %}
+                  <option value="{{ user.getId }}" selected>{{ user.getFirstName }} {{ user.getLastName }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <a class="button button-primary" href="/tasks/{{ project.getId }}">Cancel</a>
+      <input class="button-primary" type="submit" value="Save">
+    </form>
+  </div>
+
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>

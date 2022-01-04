@@ -31,16 +31,42 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="container">
-  <form action="/users/save/task/{{ user.getId }}" method="POST">
-      {% for task in tasks %}
-        <tr>
-            <td><h3>{{ task.name }}</h3></td>
-            <td><textarea>{{ task.description }}</textarea></td>
-        </tr>
-      {% endfor %}
-    <a class="button button-primary" href="/users">Cancel</a>
-    <input class="button-primary" type="submit" value="Submit">
-  </form>
+<div class="container">
+    <div class="row">
+        <div class="one-half column" style="margin-top: 25%">
+            <h4>{{ project.getName }} tasks</h4>
+        </div>
+    </div>
+    <a class="button button-primary" href="/tasks/{{ project.getId }}/add">Add tasks</a>
+  {% if tasks %}
+    <div class="row">
+        <div class="column">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.getName }}</td>
+                        <td>{{ task.getDescription }}</td>
+                        <td>{{ task.getStartDate|date("d M Y") }}</td>
+                        <td>{{ task.getEndDate|date("d M Y") }}</td>
+                        <td><a class="button button-primary" href="/tasks/{{ project.getId }}/edit/{{ task.getId }}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+  {% endif %}
+  <a class="button button-primary" href="/projects">Projects</a>
 </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
